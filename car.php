@@ -27,6 +27,12 @@ class Car
     $mercedes->miles = 37979;
 
     $cars = array($porsche, $ford, $lexus, $mercedes);
+    $cars_matching_search = array();
+    foreach ($cars as $car) {
+        if ($car->price < $_GET["price"]) {
+            array_push($cars_matching_search, $car);
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +44,7 @@ class Car
     <h1>Your Car Dealership</h1>
     <ul>
         <?php
-            foreach ($cars as $car) {
+            foreach ($cars_matching_search as $car) {
                 echo "<li> $car->make_model </li>";
                 echo "<ul>";
                     echo "<li> $$car->price </li>";
