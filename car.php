@@ -1,13 +1,13 @@
 <?php
 class Car
 {
-    public $make_model;
-    public $price;
-    public $miles;
+    private $make_model;
+    private $price;
+    private $miles;
 
     function worthBuying($max_price)
     {
-        return $this->price < ($max_price + 100);
+        return $this->cost < ($max_price + 100);
     }
 
     function __construct($make_model, $price, $miles)
@@ -15,6 +15,44 @@ class Car
         $this->model = $make_model;
         $this->cost = $price;
         $this->mileage = $miles;
+    }
+
+    function getModel()
+    {
+        return $this->model;
+    }
+
+    function getCost()
+    {
+        return $this->cost;
+    }
+
+    function getMileage()
+    {
+        return $this->mileage;
+    }
+
+    function setModel($new_model)
+    {
+        if (is_string($new_model)){
+            $this->model = $new_model;
+        }
+    }
+
+    function setCost($new_cost)
+    {
+        $int_price = (int) $new_cost;
+        if ($int_price != 0) {
+            $this->cost = $int_price;
+        }
+    }
+
+    function setMileage($new_mileage)
+    {
+        $int_miles = (int) $new_mileage;
+        if ($int_miles != 0) {
+            $this->mileage = $int_miles;
+        }
     }
 }
 
