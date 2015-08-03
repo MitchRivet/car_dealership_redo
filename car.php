@@ -4,17 +4,19 @@ class Car
     private $make_model;
     private $price;
     private $miles;
+    private $picture;
 
     function worthBuying($max_price)
     {
         return $this->cost < ($max_price + 100);
     }
 
-    function __construct($make_model, $price, $miles)
+    function __construct($make_model, $price, $miles, $picture)
     {
         $this->model = $make_model;
         $this->cost = $price;
         $this->mileage = $miles;
+        $this->image = $picture;
     }
 
     function getModel()
@@ -30,6 +32,11 @@ class Car
     function getMileage()
     {
         return $this->mileage;
+    }
+
+    function getImage()
+    {
+        return $this->image;
     }
 
     function setModel($new_model)
@@ -54,12 +61,19 @@ class Car
             $this->mileage = $int_miles;
         }
     }
+
+    function setImage($new_image)
+    {
+        if (is_string($new_image)){
+            $this->image = $new_image;
+        }
+    }
 }
 
-$porsche = new Car("2014 Porsche 911", 114991, 7864);
-$ford = new Car("2011 Ford F450", 55995, 14241);
-$lexus = new Car("2013 Lexus RX 350", 44700, 20000);
-$mercedes = new Car("Mercedes Benz CLS550", 39900, 37979);
+$porsche = new Car("2014 Porsche 911", 114991, 7864, "img/porsche.png");
+$ford = new Car("2011 Ford F450", 55995, 14241, "img/ford.png");
+$lexus = new Car("2013 Lexus RX 350", 44700, 20000, "img/lexus.png");
+$mercedes = new Car("Mercedes Benz CLS550", 39900, 37979, "img/mercedes.png");
 
 $cars = array($porsche, $ford, $lexus, $mercedes);
 
@@ -74,20 +88,31 @@ foreach ($cars as $car) {
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     <title>Your Car Dealership's Homepage</title>
 </head>
 <body>
     <h1>Your Car Dealership</h1>
-    <ul>
-        <?php
-            foreach ($cars_matching_search as $car) {
-                echo "<li> $car->model </li>";
-                echo "<ul>";
-                    echo "<li> $$car->cost </li>";
-                    echo "<li> Miles: $car->mileage </li>";
-                echo "</ul>";
-            }
-        ?>
-    </ul>
+
+    <?php
+        foreach ($cars_matching_search as $car) {
+            echo "<div class='container'>
+                <div class='row'>
+                    <div class='col-md-6'>
+                        <img src ='$car->image' alt='An image of $car->model'>
+                    </div>
+                    <div class='col-md-6'>
+                    <li>$car->model</li>
+                        <ul>
+                            <li>$$car->cost</li>
+                            <li>Miles: $car->mileage</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            ";
+        }
+    ?>
+
 </body>
 </html>
