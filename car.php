@@ -95,6 +95,9 @@ foreach ($cars as $car) {
     <h1>Your Car Dealership</h1>
 
     <?php
+    if (empty($cars_matching_search)) {
+        echo "<h1> No cars matching search! </h1>";
+    } else {
         foreach ($cars_matching_search as $car) {
             echo "<div class='container'>
                 <div class='row'>
@@ -111,6 +114,7 @@ foreach ($cars as $car) {
                 </div>
             </div>
             ";
+            }
         }
     ?>
 
