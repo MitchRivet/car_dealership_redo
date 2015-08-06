@@ -19,9 +19,9 @@
         return $this->model;
     }
 
-    function getCost()
+    function getPrice()
     {
-        return $this->cost;
+        return $this->price;
     }
 
     function getMiles()
@@ -41,11 +41,11 @@
         }
     }
 
-    function setCost($new_cost)
+    function setPrice($new_price)
     {
-        $int_price = (int) $new_cost;
+        $int_price = (int) $new_price;
         if ($int_price != 0) {
-            $this->cost = $int_price;
+            $this->price = $int_price;
         }
     }
 
@@ -62,6 +62,11 @@
         if (is_string($new_image)){
             $this->image = $new_image;
         }
+    }
+
+    static function getAll()
+    {
+        return $_SESSION['list_of_cars'];
     }
   }
 ?>

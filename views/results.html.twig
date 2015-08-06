@@ -1,0 +1,12 @@
+<h1>Here are your Cars:</h1>
+
+{% if matching_cars is not empty %}
+    <p>Here are all your cars:</p>
+    {% for car in matching_cars %}
+    {{ car.getModel }}</br>
+    {{ car.getPrice }}</br>
+    {{ car.getMiles }}</br>
+    {{ car.getImage }}</br>
+    {% endfor %}
+
+{% endif %}
