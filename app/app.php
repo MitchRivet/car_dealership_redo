@@ -7,11 +7,13 @@
     session_start();
     if (empty($_SESSION['list_of_cars'])) {
         $_SESSION['list_of_cars'] = array();
+        $ferrari = new Car("S430", 100000, 1, "http://lorempixel.com/output/transport-q-c-640-480-10.jpg");
+        $chevy = new Car("Friendster", 500, 1, "http://lorempixel.com/output/transport-q-c-640-480-10.jpg");
+        //$_SESSION['list_of_cars'] = array($ferrari, $chevy);
+        $ferrari->save();
+        $chevy->save();
     }
 
-    //$ferrari = new Car("S430", 100000, 1, "http://lorempixel.com/output/transport-q-c-640-480-10.jpg");
-    //$chevy = new Car("Friendster", 500, 1, "http://lorempixel.com/output/transport-q-c-640-480-10.jpg");
-    //$_SESSION['list_of_cars'] = array($ferrari, $chevy, $car_added);
 
     //initialize the application
     $app = new Silex\Application();
@@ -32,6 +34,7 @@
 
     //this route is for the results page
     $app->get("/results", function() use ($app){
+
       $user_miles = $_GET['miles'];
       $user_price = $_GET['price'];
       $allcars = Car::getAll();
