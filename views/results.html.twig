@@ -6,7 +6,11 @@
     {{ car.getModel }}</br>
     {{ car.getPrice }}</br>
     {{ car.getMiles }}</br>
-    {{ car.getImage }}</br>
+    <img src='{{ car.getImage }}'></br></br>
     {% endfor %}
+
+    <form action='/delete_tasks' method='POST'>
+      <button type='submit'>Delete All Cars</button>
+    </form>
 
 {% endif %}

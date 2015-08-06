@@ -1,11 +1,14 @@
 <?php
+  //establish Car class
   class Car
   {
+        //setting properties to private
         private $model;
         private $price;
         private $miles;
         private $image;
 
+        //creating a constructor for the Car class
   function __construct($model, $price, $miles, $image)
   {
         $this->model = $model;
@@ -13,7 +16,7 @@
         $this->miles= $miles;
         $this->image = $image;
   }
-
+  //getters for Car properties
   function getModel()
     {
         return $this->model;
@@ -33,7 +36,7 @@
     {
         return $this->image;
     }
-
+    //setters for Car properties
     function setModel($new_model)
     {
         if (is_string($new_model)){
@@ -63,10 +66,20 @@
             $this->image = $new_image;
         }
     }
-
+    //static function for returning our Cars in the global Session variable
     static function getAll()
     {
         return $_SESSION['list_of_cars'];
+    }
+    //save function for the user inputted cars
+    function save() {
+        array_push($_SESSION['list_of_cars'], $this);
+    }
+
+    //function that deletes all of the searched cars 
+    static function deleteAll()
+    {
+        $_SESSION['list_of_cars'] = array();
     }
   }
 ?>
